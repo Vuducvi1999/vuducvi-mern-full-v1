@@ -23,7 +23,7 @@ route.post("/login", async (req, res) => {
       // payload để làm gì
       jwt.sign(
         { id: user._id },
-        config.jwtSecret,
+        process.env.jwtSecret,
         { expiresIn: 60 * 60 },
         (err, token) => {
           if (err) return res.status(404).json({ msg: err.message });

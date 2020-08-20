@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const path = require("path");
-// require("dotenv").config();
+require("dotenv").config();
 const config = require("./config.json");
 const cors = require("cors");
 app.use(cors());
@@ -22,7 +22,7 @@ app.use("/api/users", users);
 
 // config DB
 mongoose
-  .connect(config.URI, {
+  .connect(process.env.URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,

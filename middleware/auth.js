@@ -10,7 +10,7 @@ module.exports = function (req, res, next) {
 
   try {
     // Verify token
-    const decoded = jwt.verify(token, config.jwtSecret);
+    const decoded = jwt.verify(token, process.env.jwtSecret);
     // Add user from payload
     req.user = decoded;
     next();
