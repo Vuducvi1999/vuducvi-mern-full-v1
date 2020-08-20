@@ -2,7 +2,8 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const path = require("path");
-require("dotenv").config();
+// require("dotenv").config();
+const config = require("./config.json");
 const cors = require("cors");
 app.use(cors());
 
@@ -12,13 +13,20 @@ app.use(express.urlencoded({ extended: true }));
 
 // require route
 const items = require("./routes/api/items");
+const users = require("./routes/api/users");
+const auth = require("./middleware/auth");
 
 // use route
-app.use("/api/items", items);
+app.use("/api/items", auth, items);
+app.use("/api/users", users);
 
 // config DB
 mongoose
-  .connect(process.env.URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(config.URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+  })
   .then(console.log("connect DB success!"))
   .catch(console.log("connect DB fail!"));
 
@@ -28,7 +36,7 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.resolve(__dirname, "client/build/index.html"));
   });
 }
-const port = process.env.PORT || 5000;
+const port = config.port || 5000;
 app.listen(port, () => {
   console.log(`server start port ${port}`);
 });

@@ -1,0 +1,8 @@
+# có thêm 2 bước đăng nhập và đăng kí
+    đăng nhập sẽ kiểm tra email và password sau đó gửi trả về token và user hiện tại
+    đăng kí sẽ lưu vào CSDL name, email và password, đồng thời trả về token và user hiện tại
+
+# mỗi khi truy cập vào các đường dẫn khác ngoài login và register đều sẽ bắt buộc token
+
+# lỗi bảo mật, nhờ vào token bị đánh cắp có thể truy cập vào user hiện tại thông qua id của user đó
+  chỉ khi token hết hạn mới khắc phục được tình trạng này

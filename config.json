@@ -1,0 +1,4 @@
+{
+  "URI": "mongodb+srv://vuducvi:vuducvi@cluster0-z8cct.gcp.mongodb.net/mern-stack-full?retryWrites=true&w=majority",
+  "jwtSecret": "myfullnameisvuducvi"
+}

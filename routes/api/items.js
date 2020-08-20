@@ -12,8 +12,8 @@ route.get("/", async (req, res) => {
     Item.find()
       .sort({ date: -1 })
       .then((data) => res.json(data));
-  } catch (error) {
-    res.json(error);
+  } catch (e) {
+    res.json({ msg: e.message });
   }
 });
 
@@ -25,7 +25,7 @@ route.post("/", async (req, res) => {
     // hoặc
     newItem.save().then((data) => res.json(data));
   } catch (error) {
-    res.json(error);
+    res.json({ msg: error.message });
   }
 });
 
@@ -33,7 +33,7 @@ route.delete("/:id", async (req, res) => {
   // không sử dụng trycatch thì sử dụng catch trong Promise
   Item.findByIdAndDelete(req.params.id)
     .then((data) => res.json({ success: true }))
-    .catch((err) => res.status(404).json({ success: false }));
+    .catch((err) => res.status(404).json({ msg: err.message, success: false }));
 });
 
 module.exports = route;
