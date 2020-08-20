@@ -36,7 +36,7 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.resolve(__dirname, "client/build/index.html"));
   });
 }
-const port = config.port || 5000;
+const port = 5000;
 app.listen(port, () => {
   console.log(`server start port ${port}`);
 });
